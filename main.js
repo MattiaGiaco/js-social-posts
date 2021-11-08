@@ -57,6 +57,8 @@ const posts = [
 ];
 
 drawPost();
+const likeCounter = document.querySelectorAll('likes_counter');
+
 
 function drawPost(){
     // ciclo i dati
@@ -65,13 +67,17 @@ function drawPost(){
     for(let post of posts){
         drawOnePost(post)
     } 
-}
+};
+
+function formatDate(date){
+    return date.split('-').reverse().join('/');
+};
+
 
 function drawOnePost(post){
     const container = document.getElementById('container');
     let prevContent = container.innerHTML;
     const {content, media, author,likes,created} = post;
-    author
 
     prevContent +=
     `
@@ -79,11 +85,11 @@ function drawOnePost(post){
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${author.image}" alt="Phil Mangione">                    
+                    <img class="profile-pic" src="${author.image}" alt="">                    
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${author.name}</div>
-                    <div class="post-meta__time">${created}</div>
+                    <div class="post-meta__time">${formatDate(created)}</div>
                 </div>                    
             </div>
         </div>
